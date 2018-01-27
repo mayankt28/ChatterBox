@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Chatroom</title>
+    <meta charset="UTF-8">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+    <h1>Chat Room !!</h1>
+    <div id="Username">
+        <p>Enter username</p>
+        <input id="name" type="text">
+        <button id="submit">Submit</button>
+
+    </div>
+
+    <div id="chatbox">
+        <input id="msg" type="text">
+        <button onclick="sendmsg()">Send Msg</button>
+    </div>
+    <div id="chatdiv">
+
+    </div>
+
+    <script>
+        socket = new WebSocket("ws://" + window.location.host + "/chat/");
+
+        socket.onmessage = function(e) {
+            $("#chatdiv").append("<p>" + e.data + "</p>");
+            console.log(e, e.data);
+        }
+
+
+        $('#chatbox').hide();
+        $('#submit').click(function() {
+            msg = $('#name').val();
+            socket.send(msg)
+            $('#name').val('');
+            $('#Username').slideUp();
+            $('#chatbox').slideDown();
+        })
+
+
+        function sendmsg() {
+            msg = $('#msg').val();
+            socket.send(msg);
+            $('#msg').val('');
+        }
+    </script>
+
+</body>
+
+</html>
