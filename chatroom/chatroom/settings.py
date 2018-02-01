@@ -25,7 +25,15 @@ SECRET_KEY = 'w5-!$hw)#&ft#+!sxcnzjlf$6ro9asacf59t_ixw2g#7npk2jp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+#E-Mail Setup
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
 
 
 # Application definition
@@ -87,7 +95,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'chat_server',
         'USER': 'postgres',
-        'PASSWORD': 'matrix@123',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }

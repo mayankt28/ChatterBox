@@ -10,22 +10,26 @@
 
 </head>
 
-<body>
-    <h1>Chat Room !!</h1>
-    <div id="Username">
-        <p>Enter username</p>
-        <input id="name" type="text">
-        <button id="submit">Submit</button>
 
-    </div>
+<body>
+
+    <h1>Chatter Box!!</h1>
+
 
     <div id="chatbox">
         <input id="msg" type="text">
         <button onclick="sendmsg()">Send Msg</button>
     </div>
+    <div>
+        <p>
+            Welcome {{username}}
+        </p>
+        <a href="{% url 'logout_form' %}">logout</a>
+    </div>
     <div id="chatdiv">
 
     </div>
+
 
     <script>
         socket = new WebSocket("ws://" + window.location.host + "/chat/");
@@ -36,14 +40,8 @@
         }
 
 
-        $('#chatbox').hide();
-        $('#submit').click(function() {
-            msg = $('#name').val();
-            socket.send(msg)
-            $('#name').val('');
-            $('#Username').slideUp();
-            $('#chatbox').slideDown();
-        })
+
+
 
 
         function sendmsg() {
@@ -52,6 +50,7 @@
             $('#msg').val('');
         }
     </script>
+
 
 </body>
 

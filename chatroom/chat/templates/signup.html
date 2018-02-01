@@ -39,7 +39,8 @@
             <div class="login100-more" style="background-image: url({% static 'signup/images/bg-01.jpg' %});"></div>
 
             <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
-                <form class="login100-form validate-form">
+                <form class="login100-form validate-form" action="{% url 'signup_process' %}" method="post">
+                    {% csrf_token %}
                     <span class="login100-form-title p-b-59">
 						Sign Up
 					</span>
@@ -64,13 +65,13 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Password is required">
                         <span class="label-input100">Password</span>
-                        <input class="input100" type="text" name="pass" placeholder="*************">
+                        <input class="input100" type="password" name="pass" placeholder="*************">
                         <span class="focus-input100"></span>
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Repeat Password is required">
                         <span class="label-input100">Repeat Password</span>
-                        <input class="input100" type="text" name="repeat-pass" placeholder="*************">
+                        <input class="input100" type="password" name="repeat-pass" placeholder="*************">
                         <span class="focus-input100"></span>
                     </div>
 
